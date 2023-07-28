@@ -7,9 +7,15 @@ import (
 	"regexp"
 	"sort"
 	"strings"
+	"unicode/utf8"
 )
 
 func main() {
+	Greeting := "\n\nДобро пожаловать в калькулятор"
+	fmt.Println(Greeting)
+	Delimiter := strings.Repeat("—", utf8.RuneCountInString(Greeting)-2)
+	fmt.Println(Delimiter)
+
 	// Запрос выражения у пользователя
 	fmt.Println("Введите выражение: ")
 	reader := bufio.NewReader(os.Stdin)
