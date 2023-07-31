@@ -20,13 +20,14 @@ func main() {
 	fmt.Println("Введите выражение: ")
 	reader := bufio.NewReader(os.Stdin)
 	input, _ := reader.ReadString('\n')
-	cleanInput := strings.TrimSpace(strings.ToUpper(strings.TrimRight(input, "\n")))
+	cleanInput := strings.Fields(strings.ToUpper(input))
+	FinalInput := strings.Join(cleanInput, "")
 
 	// Определение оператора в выражении для Split и Switch
 	var operator string
 	operators := [...]string{"+", "-", "*", "/"}
 	for _, op := range operators {
-		if strings.Contains(cleanInput, op) {
+		if strings.Contains(FinalInput, op) {
 			operator = op
 			break
 		} else if op == operators[len(operators)-1] {
@@ -36,7 +37,7 @@ func main() {
 	}
 
 	// Сепарация ввода на операнды по оператору
-	operands := strings.Split(cleanInput, operator)
+	operands := strings.Split(FinalInput, operator)
 	if len(operands) > 2 {
 		fmt.Println("Неверный формат выражения, не более двух операндов в выражении")
 		return
